@@ -1,0 +1,25 @@
+﻿@page "/page/{alias}"
+@using Microsoft.AspNetCore.Mvc;
+@using OrchardCore.ContentManagement;
+@inject OrchardCore.IOrchardHelper Orchard
+
+<PageTitle>Page</PageTitle>
+
+<h1>Page</h1>
+@Alias
+@if (pageContent != null)
+{
+    @pageContent.DisplayText
+}
+
+@code {
+    ContentItem pageContent;
+
+    [ParameterAttribute]
+    public string Alias { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        pageContent = await Orchard.GetContentItemByHandleAsync($"alias:{Alias}");
+    }
+}

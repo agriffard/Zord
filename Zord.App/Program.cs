@@ -5,26 +5,8 @@ using Zord.App.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-//builder.Services.AddOrchardCms();
-builder.Services.AddOrchardCore()
-                .AddCommands()
-
-                .AddSecurity()
-                .AddMvc()
-                .AddIdGeneration()
-                .AddEmailAddressValidator()
-                .AddHtmlSanitizer()
-                .AddSetupFeatures("OrchardCore.Setup")
-
-                .AddDataAccess()
-                .AddDataStorage()
-                .AddBackgroundService()
-                .AddScripting()
-
-                .AddTheming()
-                .AddLiquidViews()
-                .AddCaching();
-
+builder.Services.AddOrchardCms();
+//builder.Services.AddOrchardCore();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();

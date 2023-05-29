@@ -1,0 +1,30 @@
+﻿@using System.Text.Encodings.Web;
+@using Microsoft.AspNetCore.Html;
+@using OrchardCore.DisplayManagement.Liquid;
+@inject OrchardCore.IOrchardHelper Orchard
+
+@((MarkupString)GetString(htmlContent))
+
+@code {
+    [ParameterAttribute]
+    public string LiquidValue { get; set; }
+    IHtmlContent htmlContent;
+
+    protected override async Task OnInitializedAsync()
+    {
+        htmlContent = await Orchard.LiquidToHtmlAsync(LiquidValue);
+    }
+
+    public string GetString(IHtmlContent content)
+    {
+        if (content != null)
+        {
+            using (var writer = new System.IO.StringWriter())
+            {
+                content.WriteTo(writer, HtmlEncoder.Default);
+                return writer.ToString();
+            }
+        }
+        return "";
+    }
+}

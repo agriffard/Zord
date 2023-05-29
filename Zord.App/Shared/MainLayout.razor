@@ -1,4 +1,6 @@
 ﻿@inherits LayoutComponentBase
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccessor
 
 <PageTitle>Zord.App</PageTitle>
 
@@ -9,7 +11,14 @@
 
     <main>
         <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        @if (!string.IsNullOrEmpty(UserName))
+        {
+            <a href="/admin">@UserName</a>
+        }
+        else
+        {
+            <a href="/Admin">Admin</a>
+        }
         </div>
 
         <article class="content px-4">
@@ -17,3 +26,12 @@
         </article>
     </main>
 </div>
+
+@code {
+    public string UserName;
+
+    protected override async Task OnInitializedAsync()
+    {
+        UserName = httpContextAccessor.HttpContext.User.Identity.Name;
+    }
+}

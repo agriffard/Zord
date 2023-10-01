@@ -13,11 +13,11 @@
 - [X] User: Current.
 - [X] Queries.
 - [X] LiquidTemplate component.
-- [] Navigation (Menu shape or query?, hierarchical?).
-- [] List, Bag?
-- [] Media (assets, field).
-- [] Search?
-- [] Table of contents?
-- [] CRUD?
-- [] Custom Settings (from SiteService)?
-- [] Localization?
+- [ ] Navigation (Menu shape or query?, hierarchical?).
+- [ ] List, Bag?
+- [ ] Media (assets, field).
+- [ ] Search?
+- [ ] Table of contents?
+- [ ] CRUD?
+- [ ] Custom Settings (from SiteService)?
+- [ ] Localization?

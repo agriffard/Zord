@@ -5,10 +5,10 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ORCHARD_APP_DATA": "C:\\Orchard\\Orchard_App_Data\\Blazorchard"
+        "ORCHARD_APP_DATA": "C:\\Orchard\\Orchard_App_Data\\Zord"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7220;http://localhost:5205"
+      "applicationUrl": "https://localhost:7221;http://localhost:5206"
     },
     "IIS Express": {
       "commandName": "IISExpress",

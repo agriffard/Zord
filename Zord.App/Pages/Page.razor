@@ -2,6 +2,7 @@
 @using Microsoft.AspNetCore.Mvc;
 @using OrchardCore;
 @using OrchardCore.ContentManagement;
+@using OrchardCore.Seo.Models
 @using OrchardCore.Settings;
 @inject NavigationManager NavigationManager
 @inject IOrchardHelper Orchard
@@ -17,6 +18,7 @@
 
 @code {
     ContentItem pageContent;
+    SeoMetaPart seo;
     ISite site;
 
     [ParameterAttribute]
@@ -28,14 +30,18 @@
 
     protected override async Task OnParametersSetAsync()
     {
-        if (Alias.IndexOf("admin", StringComparison.OrdinalIgnoreCase) > -1)
+        // if (Alias.IndexOf("admin", StringComparison.OrdinalIgnoreCase) > -1)
+        // {
+        //     NavigationManager.NavigateTo($"/{Alias}", true, true); // Redirect does not work if it is already on a page with an alias url
+        // }
+        // else
+        // {
+        site = await SiteService.GetSiteSettingsAsync();
+        pageContent = await Orchard.GetContentItemByHandleAsync($"alias:{Alias}", true);
+        if (pageContent != null)
         {
-            NavigationManager.NavigateTo($"/{Alias}", true, true); // Redirect does not work if it is already on a page with an alais url
+            seo = pageContent.As<SeoMetaPart>();
         }
-        else
-        {
-            pageContent = await Orchard.GetContentItemByHandleAsync($"alias:{Alias}");
-            site = await SiteService.GetSiteSettingsAsync();
-        }
+        //}
     }
 }

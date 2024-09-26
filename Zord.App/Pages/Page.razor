@@ -37,7 +37,7 @@
         // else
         // {
         site = await SiteService.GetSiteSettingsAsync();
-        pageContent = await Orchard.GetContentItemByHandleAsync($"alias:{Alias}", true);
+        pageContent = await Orchard.GetContentItemByHandleAsync($"alias:{Alias}", VersionOptions.Latest);
         if (pageContent != null)
         {
             seo = pageContent.As<SeoMetaPart>();
